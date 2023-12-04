@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">DaurinPoin</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_directory">History</string>
+    <string name="title_scan">SCAN</string>
+    <string name="title_shop">Shop</string>
+    <string name="title_user">User</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="past">Past</string>
+    <string name="onboarding_subtext">Welcome to DaurinPoin! Earn points by scanning and submitting waste. Let\'s create a cleaner world together!</string>
+    <string name="onboarding_maintext">Be part of our community</string>
+    <string name="onboarding_textbutton">Let\'s Start</string>
+    <string name="text_password">Password</string>
+    <string name="text_emailadress">Email Address</string>
+    <string name="text_enter_email">Enter your email address</string>
+    <string name="text_enter_password">Enter your password</string>
+    <string name="text_login">Login</string>
+    <string name="text_dont_have_account">Don\'t have an account?</string>
+    <string name="text_sign_up">Sign Up</string>
+    <string name="text_confirmpassword">Confirm Password</string>
+    <string name="text_reenter_password">Re-enter your password</string>
+</resources>

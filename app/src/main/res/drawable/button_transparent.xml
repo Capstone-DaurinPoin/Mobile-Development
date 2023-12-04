@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/drawable/button_background.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- State ketika tombol dalam keadaan ditekan -->
+    <item android:state_pressed="false">
+        <shape>
+            <solid android:color="@android:color/transparent" />
+            <stroke android:color="@android:color/white" android:width="0dp" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+
+    <!-- State ketika tombol tidak ditekan -->
+    <item>
+        <shape>
+            <solid android:color="@android:color/transparent" />
+            <stroke android:color="@android:color/white" android:width="0dp" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+
+</selector>
