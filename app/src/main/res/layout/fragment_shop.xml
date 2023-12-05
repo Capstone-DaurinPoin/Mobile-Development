@@ -31,16 +31,18 @@
             android:id="@+id/buttonGoToPoints"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textEmptyCart"
             android:layout_marginTop="30dp"
+            android:layout_marginBottom="12dp"
             android:background="@drawable/rounded_button_background"
             android:backgroundTint="@color/colorPrimary"
-            android:fontFamily="@font/helvetica_bold"
+            android:fontFamily="@font/helvetica_regular"
+            android:letterSpacing="0.05"
             android:paddingHorizontal="24dp"
             android:paddingVertical="12dp"
             android:text="Go to Points"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
-            android:textSize="16sp" />
+            android:textSize="14sp"
+            android:textStyle="bold" />
     </LinearLayout>
 </RelativeLayout>
