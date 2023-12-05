@@ -33,8 +33,11 @@ class HomeFragment : Fragment() {
         val user: FirebaseUser? = auth.currentUser
         val textName: TextView = view.findViewById(R.id.textNamaHome)
         val displayName = user?.displayName
+        val words = displayName?.split(" ")
+        val firstName = words?.firstOrNull()
 
-        textName.text = displayName
+        textName.text = firstName
+
 
         btnScan = view.findViewById(R.id.btn_ScanTrash)
         btnScan.setOnClickListener {

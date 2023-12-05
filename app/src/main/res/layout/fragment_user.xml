@@ -9,14 +9,24 @@
     <RelativeLayout
         android:id="@+id/userInfoLayout"
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="wrap_content">
+        <!-- Image (Circle) -->
+        <ImageView
+            android:id="@+id/imageUser"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:background="@drawable/circle_background"
+            android:src="@drawable/ic_launcher_foreground" />
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:gravity="center|start"
+            android:layout_height="100dp"
+            android:layout_below="@+id/imageUser"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
             android:orientation="vertical">
             <!-- Nama -->
             <TextView
@@ -24,6 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/helvetica_bold"
+                android:gravity="center"
                 android:letterSpacing="0.04"
                 android:text="Nama"
                 android:textColor="@color/black2"
@@ -35,21 +46,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/helvetica_regular"
+                android:gravity="center"
                 android:letterSpacing="0.04"
                 android:text="hello@daurinpoin.com"
                 android:textColor="@color/sub_black"
                 android:textSize="18sp" />
         </LinearLayout>
-
-
-        <!-- Image (Circle) -->
-        <ImageView
-            android:id="@+id/imageUser"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentEnd="true"
-            android:background="@drawable/circle_background"
-            android:src="@drawable/ic_launcher_foreground" />
 
     </RelativeLayout>
 

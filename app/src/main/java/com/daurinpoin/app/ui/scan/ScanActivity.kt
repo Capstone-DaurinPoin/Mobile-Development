@@ -68,6 +68,15 @@ class ScanActivity : AppCompatActivity() {
             override fun surfaceChanged(
                 holder: SurfaceHolder, format: Int, width: Int, height: Int
             ) {
+                val parameters = camera?.parameters
+                val supportedPreviewSizes = parameters?.supportedPreviewSizes
+                val optimalSize = getOptimalPreviewSize(supportedPreviewSizes, width, height)
+
+                parameters?.setPreviewSize(
+                    optimalSize?.width ?: width, optimalSize?.height ?: height
+                )
+                camera?.parameters = parameters
+                camera?.startPreview()
             }
 
             override fun surfaceDestroyed(holder: SurfaceHolder) {
@@ -76,6 +85,27 @@ class ScanActivity : AppCompatActivity() {
                 camera?.release()
             }
         })
+    }
+
+    private fun getOptimalPreviewSize(sizes: List<Camera.Size>?, w: Int, h: Int): Camera.Size? {
+        val ASPECT_TOLERANCE = 0.1
+        val targetRatio = w.toDouble() / h
+
+        if (sizes == null) return null
+
+        var optimalSize: Camera.Size? = null
+        var minDiff = Double.MAX_VALUE
+
+        for (size in sizes) {
+            val ratio = size.width.toDouble() / size.height
+            val diff = Math.abs(ratio - targetRatio)
+            if (diff < minDiff) {
+                optimalSize = size
+                minDiff = diff
+            }
+        }
+
+        return optimalSize
     }
 
     private fun takePicture() {
@@ -116,12 +146,6 @@ class ScanActivity : AppCompatActivity() {
         ) == PackageManager.PERMISSION_GRANTED
     }
 
-    /*    override fun onBackPressed() {
-            val resultIntent = Intent()
-            resultIntent.putExtra("navigateToHome", true)
-            setResult(Activity.RESULT_OK, resultIntent)
-            super.onBackPressed()
-        }*/
     override fun onBackPressed() {
         val resultIntent = Intent()
         setResult(Activity.RESULT_OK, resultIntent)
@@ -130,6 +154,19 @@ class ScanActivity : AppCompatActivity() {
         super.onBackPressed()
     }
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<out String>, grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            if (allPermissionsGranted()) {
+                setupCamera()
+            } else {
+                // Handle the case where the user denied some or all of the requested permissions.
+                // You may want to show a message or ask again for the missing permissions.
+            }
+        }
+    }
 
     companion object {
         private const val PERMISSION_REQUEST_CODE = 123
