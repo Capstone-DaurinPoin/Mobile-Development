@@ -47,7 +47,7 @@
         android:textSize="14sp" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/editTextEmailLogin"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@+id/title_email"
@@ -67,7 +67,7 @@
         android:id="@+id/title_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/username"
+        android:layout_below="@+id/editTextEmailLogin"
         android:layout_marginTop="12dp"
         android:fontFamily="@font/helvetica_regular"
         android:letterSpacing="0.04"
@@ -76,14 +76,14 @@
         android:textSize="14sp" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/editTextPasswordLogin"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@+id/title_password"
         android:layout_marginTop="6dp"
         android:background="@drawable/rounded_edittext"
         android:drawableStart="@drawable/ic_lock"
-        android:drawableEnd="@drawable/ic_eye"
+        android:drawableEnd="@drawable/ic_hide"
         android:drawablePadding="12dp"
         android:fontFamily="@font/helvetica_regular"
         android:hint="@string/text_enter_password"
@@ -97,7 +97,7 @@
         android:id="@+id/forgetPassword"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
-        android:layout_below="@id/password"
+        android:layout_below="@id/editTextPasswordLogin"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="6dp"
         android:background="@drawable/button_transparent"
@@ -108,12 +108,14 @@
         android:textSize="14sp" />
 
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/forgetPassword"
         android:layout_marginTop="30dp"
         android:background="@drawable/rounded_button_background"
+        android:fontFamily="@font/helvetica_bold"
+        android:letterSpacing="0.05"
         android:onClick="loginApp"
         android:paddingVertical="12dp"
         android:text="@string/text_login"

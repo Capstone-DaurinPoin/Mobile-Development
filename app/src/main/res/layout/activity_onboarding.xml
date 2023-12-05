@@ -2,14 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:padding="30dp">
 
     <ImageView
         android:id="@+id/onboardingImage"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="30dp"
         android:src="@drawable/image_onboarding" />
 
     <TextView
@@ -18,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/onboardingImage"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/helvetica_bold"
         android:letterSpacing="0.04"
         android:onClick="goToLoginPage"
@@ -29,7 +30,7 @@
 
     <TextView
         android:id="@+id/subText"
-        android:layout_width="340dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/highlightText"
         android:layout_centerHorizontal="true"
@@ -49,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/subText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="70dp"
         android:background="@drawable/rounded_button_background"
         android:fontFamily="@font/helvetica_regular"
         android:letterSpacing="0.05"

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "3126874317",
+    "project_id": "daurinpoin-d9244",
+    "storage_bucket": "daurinpoin-d9244.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:3126874317:android:025bcfdca57388262d9984",
+        "android_client_info": {
+          "package_name": "com.daurinpoin.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBMicxUlEWAeBAnDuW66KAjUWIrKdtPXg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

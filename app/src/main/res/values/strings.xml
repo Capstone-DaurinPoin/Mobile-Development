@@ -22,4 +22,5 @@
     <string name="text_sign_up">Sign Up</string>
     <string name="text_confirmpassword">Confirm Password</string>
     <string name="text_reenter_password">Re-enter your password</string>
+    <string name="text_fullname">Name</string>
 </resources>
