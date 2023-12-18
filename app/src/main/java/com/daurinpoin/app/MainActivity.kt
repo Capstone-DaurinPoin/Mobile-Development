@@ -38,25 +38,6 @@ class MainActivity : AppCompatActivity() {
         val menu = popupMenu.menu
 
         bottomBar.setupWithNavController(menu, navController)
-
-        bottomBar.onItemSelected = { index ->
-            when (index) {
-                2 -> {
-                    val intent = Intent(this, ScanActivity::class.java)
-                    startActivityForResult(intent, SCAN_REQUEST_CODE)
-                    finish()
-                }
-            }
-        }
-
-        bottomBar.onItemReselected = { index ->
-            when (index) {
-                2 -> {
-                    val intent = Intent(this, ScanActivity::class.java)
-                    startActivity(intent)
-                }
-            }
-        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

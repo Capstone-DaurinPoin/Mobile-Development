@@ -1,174 +1,148 @@
 package com.daurinpoin.app.ui.scan
 
-import android.Manifest
 import android.app.Activity
+import android.content.ContentValues
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.hardware.Camera
+import android.graphics.Bitmap
 import android.os.Bundle
-import android.os.Environment
-import android.view.SurfaceHolder
-import android.view.SurfaceView
+import android.provider.MediaStore
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import com.daurinpoin.app.MainActivity
 import com.daurinpoin.app.R
-import java.io.File
-import java.io.FileOutputStream
+import com.daurinpoin.app.ml.ModelLawasV1
+import org.tensorflow.lite.support.image.TensorImage
+import org.tensorflow.lite.support.label.Category
 import java.io.IOException
+import java.io.OutputStream
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
 class ScanActivity : AppCompatActivity() {
 
-    private lateinit var surfaceView: SurfaceView
-    private lateinit var captureButton: Button
-    private var camera: Camera? = null
+    private lateinit var model: ModelLawasV1
+
+    private val galleryLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                result.data?.data?.let { uri ->
+                    try {
+                        val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, uri)
+                        classifyImageAndDisplay(bitmap)
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+                }
+            }
+        }
+
+    private val cameraLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                result.data?.extras?.get("data")?.let { imageBitmap ->
+                    // Save the captured image to the gallery
+                    saveImageToGallery(imageBitmap as Bitmap)
+                    // Classify and display the captured image
+                    classifyImageAndDisplay(imageBitmap)
+                }
+            }
+        }
+
+    private lateinit var imageView: ImageView
+    private lateinit var tvClassificationResult: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_scan)
+        setContentView(R.layout.activity_scan)
 
-        surfaceView = findViewById(R.id.surfaceView)
-        captureButton = findViewById(R.id.captureButton)
+        val btnOpenGallery: Button = findViewById(R.id.btnOpenGallery)
+        val btnOpenCamera: Button = findViewById(R.id.btnOpenCamera)
+        imageView = findViewById(R.id.imageView)
+        tvClassificationResult = findViewById(R.id.tvClassificationResult)
 
-        if (allPermissionsGranted()) {
-            setupCamera()
-        } else {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                PERMISSION_REQUEST_CODE
-            )
+        // Initialize the model
+        model = ModelLawasV1.newInstance(this)
+
+        // Set onClickListener for the gallery button
+        btnOpenGallery.setOnClickListener {
+            openGallery()
         }
 
-        captureButton.setOnClickListener {
-            takePicture()
+        // Set onClickListener for the camera button
+        btnOpenCamera.setOnClickListener {
+            openCamera()
         }
     }
 
-    private fun setupCamera() {
-        // Inisialisasi kamera
-        camera = Camera.open()
+    private fun classifyImageAndDisplay(bitmap: Bitmap) {
+        // Show the captured image
+        imageView.setImageBitmap(bitmap)
+        imageView.visibility = ImageView.VISIBLE
 
-        // Tambahkan SurfaceHolder.Callback untuk surfaceView
-        surfaceView.holder.addCallback(object : SurfaceHolder.Callback {
-            override fun surfaceCreated(holder: SurfaceHolder) {
-                try {
-                    camera?.setPreviewDisplay(holder)
-                    camera?.startPreview()
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                }
-            }
+        // Classify the image
+        val image = TensorImage.fromBitmap(bitmap)
+        val outputs = model.process(image)
+        val probability: List<Category> = outputs.probabilityAsCategoryList
 
-            override fun surfaceChanged(
-                holder: SurfaceHolder, format: Int, width: Int, height: Int
-            ) {
-                val parameters = camera?.parameters
-                val supportedPreviewSizes = parameters?.supportedPreviewSizes
-                val optimalSize = getOptimalPreviewSize(supportedPreviewSizes, width, height)
+        // Sort the categories by score in descending order
+        val sortedProbability = probability.sortedByDescending { it.score }
 
-                parameters?.setPreviewSize(
-                    optimalSize?.width ?: width, optimalSize?.height ?: height
-                )
-                camera?.parameters = parameters
-                camera?.startPreview()
-            }
-
-            override fun surfaceDestroyed(holder: SurfaceHolder) {
-                // Stop preview saat surface dihancurkan
-                camera?.stopPreview()
-                camera?.release()
-            }
-        })
-    }
-
-    private fun getOptimalPreviewSize(sizes: List<Camera.Size>?, w: Int, h: Int): Camera.Size? {
-        val ASPECT_TOLERANCE = 0.1
-        val targetRatio = w.toDouble() / h
-
-        if (sizes == null) return null
-
-        var optimalSize: Camera.Size? = null
-        var minDiff = Double.MAX_VALUE
-
-        for (size in sizes) {
-            val ratio = size.width.toDouble() / size.height
-            val diff = Math.abs(ratio - targetRatio)
-            if (diff < minDiff) {
-                optimalSize = size
-                minDiff = diff
+        // Process the classification results
+        val resultText = buildString {
+            for (i in 0 until minOf(2, sortedProbability.size)) {
+                val category = sortedProbability[i]
+                append("${category.label}: ${category.score}\n")
             }
         }
 
-        return optimalSize
+        // Show the classification results
+        tvClassificationResult.text = resultText
+        tvClassificationResult.visibility = TextView.VISIBLE
     }
 
-    private fun takePicture() {
-        // Ambil gambar dan simpan ke file
-        camera?.takePicture(null, null, Camera.PictureCallback { data, _ ->
-            val pictureFile = getOutputMediaFile()
+    private fun openGallery() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        galleryLauncher.launch(intent)
+    }
+
+    private fun openCamera() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        cameraLauncher.launch(intent)
+    }
+
+    private fun saveImageToGallery(bitmap: Bitmap) {
+        val contentValues = ContentValues().apply {
+            put(MediaStore.Images.Media.DISPLAY_NAME, "Image_${getTimestamp()}.jpg")
+            put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
+        }
+
+        val resolver = contentResolver
+        val uri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+
+        uri?.let {
             try {
-                val fos = FileOutputStream(pictureFile)
-                fos.write(data)
-                fos.close()
+                val outputStream: OutputStream? = resolver.openOutputStream(uri)
+                outputStream?.use { bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it) }
             } catch (e: IOException) {
                 e.printStackTrace()
             }
-        })
-    }
-
-    private fun getOutputMediaFile(): File {
-        // Buat direktori penyimpanan gambar
-        val mediaStorageDir = File(
-            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-            "CameraApp"
-        )
-
-        if (!mediaStorageDir.exists()) {
-            mediaStorageDir.mkdir()
-        }
-
-        // Buat nama file dengan timestamp
-        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
-        return File("${mediaStorageDir.path}${File.separator}IMG_$timeStamp.jpg")
-    }
-
-    private fun allPermissionsGranted(): Boolean {
-        return ContextCompat.checkSelfPermission(
-            this, Manifest.permission.CAMERA
-        ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
-            this, Manifest.permission.WRITE_EXTERNAL_STORAGE
-        ) == PackageManager.PERMISSION_GRANTED
-    }
-
-    override fun onBackPressed() {
-        val resultIntent = Intent()
-        setResult(Activity.RESULT_OK, resultIntent)
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
-        super.onBackPressed()
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int, permissions: Array<out String>, grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (allPermissionsGranted()) {
-                setupCamera()
-            } else {
-                // Handle the case where the user denied some or all of the requested permissions.
-                // You may want to show a message or ask again for the missing permissions.
-            }
         }
     }
 
-    companion object {
-        private const val PERMISSION_REQUEST_CODE = 123
+    private fun getTimestamp(): String {
+        val sdf = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault())
+        return sdf.format(Date())
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // Release model resources when the activity is destroyed
+        model.close()
     }
 }
+
+
+

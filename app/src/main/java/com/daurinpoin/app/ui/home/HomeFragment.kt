@@ -38,12 +38,10 @@ class HomeFragment : Fragment() {
 
         textName.text = firstName
 
-
         btnScan = view.findViewById(R.id.btn_ScanTrash)
         btnScan.setOnClickListener {
             val intent = Intent(requireContext(), ScanActivity::class.java)
             startActivity(intent)
-            activity?.finish()
         }
     }
 }

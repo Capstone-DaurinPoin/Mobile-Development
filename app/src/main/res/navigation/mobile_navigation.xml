@@ -20,16 +20,7 @@
         android:label="@string/past"
         tools:layout="@layout/fragment_directory" >
         <action
-            android:id="@+id/action_navigation_history_to_navigation_scan"
-            app:destination="@id/navigation_scan" />
-    </fragment>
-    <fragment
-        android:id="@+id/navigation_scan"
-        android:name="com.daurinpoin.app.ui.scan.ScanFragment"
-        android:label="@string/title_scan"
-        tools:layout="@layout/fragment_scan" >
-        <action
-            android:id="@+id/action_navigation_scan_to_navigation_shop"
+            android:id="@+id/action_navigation_history_to_navigation_shop"
             app:destination="@id/navigation_shop" />
     </fragment>
     <fragment
