@@ -1,5 +1,6 @@
 package com.daurinpoin.app.ui.onboarding
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,5 +18,13 @@ class OnboardingActivity : AppCompatActivity() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()
+        setOnboardingComplete()
+    }
+
+    private fun setOnboardingComplete() {
+        val sharedPreferences = getSharedPreferences("onboarding", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putBoolean("onboarding_complete", true)
+        editor.apply()
     }
 }

@@ -5,452 +5,461 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="30dp"
-    android:paddingTop="30dp"
     android:paddingRight="30dp"
     tools:context=".ui.home.HomeFragment">
 
-    <RelativeLayout
-        android:id="@+id/fitStart"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/helvetica_bold"
-                android:letterSpacing="0.05"
-                android:text="Hi 👋🏻"
-                android:textColor="@color/black2"
-                android:layout_gravity="bottom"
-                android:textSize="28sp" />
-
-            <TextView
-                android:id="@+id/textNamaHome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:fontFamily="@font/helvetica_medium"
-                android:letterSpacing="0.05"
-                android:text="Alexa Cristine"
-                android:layout_gravity="bottom"
-                android:textColor="@color/black2"
-                android:textSize="22sp" />
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/ic_notif" />
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/textpointbalance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/fitStart"
-        android:layout_marginTop="22dp"
-        android:fontFamily="@font/helvetica_medium"
-        android:letterSpacing="0.01"
-        android:text="Point Balance"
-        android:textColor="@color/black2"
-        android:textSize="14sp" />
-
-    <LinearLayout
-        android:id="@+id/textbalance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textpointbalance"
-        android:layout_marginTop="6dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/helvetica_bold"
-            android:letterSpacing="0.01"
-            android:text="Rp"
-            android:textColor="@color/black2"
-            android:textSize="26sp" />
-
-        <TextView
-            android:id="@+id/textShowPoin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/helvetica_bold"
-            android:letterSpacing="0.05"
-            android:text="149.875"
-            android:textColor="@color/black2"
-            android:textSize="26sp" />
-    </LinearLayout>
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textbalance"
-        android:layout_marginTop="24dp">
-
-        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:id="@+id/fitStart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="30dp">
 
-                <TextView
-                    android:id="@+id/textInsights"
+
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/helvetica_medium"
-                    android:letterSpacing="0.05"
-                    android:text="Your Insights"
-                    android:textColor="@color/black2"
-                    android:textSize="18sp" />
-
-                <LinearLayout
-                    android:id="@+id/gridLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/textInsights"
-                    android:layout_marginTop="15dp"
+                    android:layout_height="40dp"
                     android:gravity="center"
                     android:orientation="horizontal">
-
-                    <!-- CardView 1 -->
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/cardView1"
-                        android:layout_width="160dp"
-                        android:layout_height="175dp"
-                        android:layout_margin="10dp"
-                        android:outlineProvider="none"
-                        app:cardCornerRadius="16dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <FrameLayout
-                                android:id="@+id/btn_ScanTrash"
-                                android:layout_width="55dp"
-                                android:layout_height="55dp"
-                                android:background="@drawable/rounded_16"
-                                android:backgroundTint="#DBDAF7">
-
-                                <ImageView
-                                    android:id="@+id/imageView"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/ic_scan"
-                                    app:tint="#5A6CF3" />
-                            </FrameLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="9dp"
-                                android:fontFamily="@font/helvetica_medium"
-                                android:letterSpacing="0.05"
-                                android:text="Scan Trash"
-                                android:textColor="@color/black2"
-                                android:textSize="16sp" />
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="4dp"
-                                    android:fontFamily="@font/helvetica_bold"
-                                    android:letterSpacing="0.05"
-                                    android:text="Scanned"
-                                    android:textColor="#B7B7C1"
-                                    android:textSize="10sp" />
-
-                                <TextView
-                                    android:id="@+id/text_scannedHome"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="3dp"
-                                    android:layout_marginTop="4dp"
-                                    android:fontFamily="@font/helvetica_bold"
-                                    android:letterSpacing="0.05"
-                                    android:text="484"
-                                    android:textColor="#B7B7C1"
-                                    android:textSize="10sp" />
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-
-                    </androidx.cardview.widget.CardView>
-
-                    <!-- CardView 2 -->
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/cardView2"
-                        android:layout_width="160dp"
-                        android:layout_height="175dp"
-                        android:layout_margin="10dp"
-                        android:outlineProvider="none"
-                        app:cardCornerRadius="16dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <FrameLayout
-                                android:id="@+id/btn_shop"
-                                android:layout_width="55dp"
-                                android:layout_height="55dp"
-                                android:background="@drawable/rounded_16"
-                                android:backgroundTint="@color/colorPrimaryLight">
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/ic_shop"
-                                    app:tint="@color/colorPrimary" />
-                            </FrameLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="9dp"
-                                android:fontFamily="@font/helvetica_medium"
-                                android:letterSpacing="0.05"
-                                android:text="Shop"
-                                android:textColor="@color/black2"
-                                android:textSize="16sp" />
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="4dp"
-                                    android:fontFamily="@font/helvetica_bold"
-                                    android:letterSpacing="0.05"
-                                    android:text="Reedem your Points!"
-                                    android:textColor="#B7B7C1"
-                                    android:textSize="10sp" />
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                    </androidx.cardview.widget.CardView>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/gridLayout2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/gridLayout"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-                    <!-- CardView 3 -->
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/cardView3"
-                        android:layout_width="160dp"
-                        android:layout_height="175dp"
-                        android:layout_margin="10dp"
-                        android:outlineProvider="none"
-                        app:cardCornerRadius="16dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <FrameLayout
-                                android:id="@+id/btn_succesHome"
-                                android:layout_width="55dp"
-                                android:layout_height="55dp"
-                                android:background="@drawable/rounded_16"
-                                android:backgroundTint="#D8F3F1">
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/ic_ckls" />
-                            </FrameLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="9dp"
-                                android:fontFamily="@font/helvetica_medium"
-                                android:letterSpacing="0.05"
-                                android:text="Success"
-                                android:textColor="@color/black2"
-                                android:textSize="16sp" />
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="4dp"
-                                    android:fontFamily="@font/helvetica_bold"
-                                    android:letterSpacing="0.05"
-                                    android:text="Checkout"
-                                    android:textColor="#B7B7C1"
-                                    android:textSize="10sp" />
-
-                                <TextView
-                                    android:id="@+id/text_checkoutHome"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="3dp"
-                                    android:layout_marginTop="4dp"
-                                    android:fontFamily="@font/helvetica_bold"
-                                    android:letterSpacing="0.05"
-                                    android:text="45"
-                                    android:textColor="#B7B7C1"
-                                    android:textSize="10sp" />
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                    <!-- CardView 4 -->
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/cardView4"
-                        android:layout_width="160dp"
-                        android:layout_height="175dp"
-                        android:layout_margin="10dp"
-                        android:outlineProvider="none"
-                        app:cardCornerRadius="16dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <FrameLayout
-                                android:id="@+id/btn_historyHome"
-                                android:layout_width="55dp"
-                                android:layout_height="55dp"
-                                android:background="@drawable/rounded_16"
-                                android:backgroundTint="#D0EDFB">
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/ic_date"
-                                    app:tint="#2DC0FF" />
-                            </FrameLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="9dp"
-                                android:fontFamily="@font/helvetica_medium"
-                                android:letterSpacing="0.05"
-                                android:text="Directory"
-                                android:textColor="@color/black2"
-                                android:textSize="16sp" />
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="4dp"
-                                    android:fontFamily="@font/helvetica_bold"
-                                    android:letterSpacing="0.05"
-                                    android:text="History"
-                                    android:textColor="#B7B7C1"
-                                    android:textSize="10sp" />
-
-                                <TextView
-                                    android:id="@+id/text_historyHome"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="3dp"
-                                    android:layout_marginTop="4dp"
-                                    android:fontFamily="@font/helvetica_bold"
-                                    android:letterSpacing="0.05"
-                                    android:text="26"
-                                    android:textColor="#B7B7C1"
-                                    android:textSize="10sp" />
-                            </LinearLayout>
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-                </LinearLayout>
-
-                <RelativeLayout
-                    android:id="@+id/textNews"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/gridLayout2"
-                    android:layout_marginTop="24dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:fontFamily="@font/helvetica_bold"
+                        android:letterSpacing="0.05"
+                        android:text="Hi 👋🏻"
+                        android:textColor="@color/black2"
+                        android:textSize="28sp" />
+
+                    <TextView
+                        android:id="@+id/textNamaHome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginStart="5dp"
                         android:fontFamily="@font/helvetica_medium"
                         android:letterSpacing="0.05"
-                        android:text="Explore More"
+                        android:text="Alexa Cristine"
+                        android:textColor="@color/black2"
+                        android:textSize="22sp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/btnNotifikasi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_notif" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textpointbalance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/fitStart"
+                android:layout_marginTop="22dp"
+                android:fontFamily="@font/helvetica_medium"
+                android:letterSpacing="0.01"
+                android:text="Point Balance"
+                android:textColor="@color/black2"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:id="@+id/textbalance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textpointbalance"
+                android:layout_marginTop="6dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/helvetica_bold"
+                    android:letterSpacing="0.01"
+                    android:text="Rp"
+                    android:textColor="@color/black2"
+                    android:textSize="26sp" />
+
+                <TextView
+                    android:id="@+id/textShowPoin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/helvetica_bold"
+                    android:letterSpacing="0.05"
+                    android:text="149.875"
+                    android:textColor="@color/black2"
+                    android:textSize="26sp" />
+            </LinearLayout>
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textbalance"
+                android:layout_marginTop="24dp">
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textInsights"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/helvetica_medium"
+                        android:letterSpacing="0.05"
+                        android:text="Your Insights"
                         android:textColor="@color/black2"
                         android:textSize="18sp" />
 
-                    <ImageView
-                        android:id="@+id/btn_moreNews"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/ic_right" />
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/textNews"
-                    android:layout_marginTop="15dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyclerNews"
+                    <LinearLayout
+                        android:id="@+id/gridLayout"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-            </RelativeLayout>
-        </androidx.core.widget.NestedScrollView>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textInsights"
+                        android:layout_marginTop="15dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <!-- CardView 1 -->
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardView1"
+                            android:layout_width="160dp"
+                            android:layout_height="175dp"
+                            android:layout_margin="10dp"
+                            android:outlineProvider="none"
+                            app:cardCornerRadius="16dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <FrameLayout
+                                    android:id="@+id/btn_ScanTrash"
+                                    android:layout_width="55dp"
+                                    android:layout_height="55dp"
+                                    android:background="@drawable/rounded_16"
+                                    android:backgroundTint="#DBDAF7">
+
+                                    <ImageView
+                                        android:id="@+id/imageView"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:src="@drawable/ic_scan"
+                                        app:tint="#5A6CF3" />
+                                </FrameLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="9dp"
+                                    android:fontFamily="@font/helvetica_medium"
+                                    android:letterSpacing="0.05"
+                                    android:text="Scan Trash"
+                                    android:textColor="@color/black2"
+                                    android:textSize="16sp" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="4dp"
+                                        android:fontFamily="@font/helvetica_bold"
+                                        android:letterSpacing="0.05"
+                                        android:text="Scanned"
+                                        android:textColor="#B7B7C1"
+                                        android:textSize="10sp" />
+
+                                    <TextView
+                                        android:id="@+id/text_scannedHome"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="3dp"
+                                        android:layout_marginTop="4dp"
+                                        android:fontFamily="@font/helvetica_bold"
+                                        android:letterSpacing="0.05"
+                                        android:text="484"
+                                        android:textColor="#B7B7C1"
+                                        android:textSize="10sp" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- CardView 2 -->
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardView2"
+                            android:layout_width="160dp"
+                            android:layout_height="175dp"
+                            android:layout_margin="10dp"
+                            android:outlineProvider="none"
+                            app:cardCornerRadius="16dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <FrameLayout
+                                    android:id="@+id/btn_shop"
+                                    android:layout_width="55dp"
+                                    android:layout_height="55dp"
+                                    android:background="@drawable/rounded_16"
+                                    android:backgroundTint="@color/colorPrimaryLight">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:src="@drawable/ic_shop"
+                                        app:tint="@color/colorPrimary" />
+                                </FrameLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="9dp"
+                                    android:fontFamily="@font/helvetica_medium"
+                                    android:letterSpacing="0.05"
+                                    android:text="Shop"
+                                    android:textColor="@color/black2"
+                                    android:textSize="16sp" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="4dp"
+                                        android:fontFamily="@font/helvetica_bold"
+                                        android:letterSpacing="0.05"
+                                        android:text="Reedem your Points!"
+                                        android:textColor="#B7B7C1"
+                                        android:textSize="10sp" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/gridLayout2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/gridLayout"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                        <!-- CardView 3 -->
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardView3"
+                            android:layout_width="160dp"
+                            android:layout_height="175dp"
+                            android:layout_margin="10dp"
+                            android:outlineProvider="none"
+                            app:cardCornerRadius="16dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <FrameLayout
+                                    android:id="@+id/btn_succesHome"
+                                    android:layout_width="55dp"
+                                    android:layout_height="55dp"
+                                    android:background="@drawable/rounded_16"
+                                    android:backgroundTint="#D8F3F1">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:src="@drawable/ic_ckls" />
+                                </FrameLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="9dp"
+                                    android:fontFamily="@font/helvetica_medium"
+                                    android:letterSpacing="0.05"
+                                    android:text="Success"
+                                    android:textColor="@color/black2"
+                                    android:textSize="16sp" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="4dp"
+                                        android:fontFamily="@font/helvetica_bold"
+                                        android:letterSpacing="0.05"
+                                        android:text="Checkout"
+                                        android:textColor="#B7B7C1"
+                                        android:textSize="10sp" />
+
+                                    <TextView
+                                        android:id="@+id/text_checkoutHome"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="3dp"
+                                        android:layout_marginTop="4dp"
+                                        android:fontFamily="@font/helvetica_bold"
+                                        android:letterSpacing="0.05"
+                                        android:text="45"
+                                        android:textColor="#B7B7C1"
+                                        android:textSize="10sp" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- CardView 4 -->
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardView4"
+                            android:layout_width="160dp"
+                            android:layout_height="175dp"
+                            android:layout_margin="10dp"
+                            android:outlineProvider="none"
+                            app:cardCornerRadius="16dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <FrameLayout
+                                    android:id="@+id/btn_historyHome"
+                                    android:layout_width="55dp"
+                                    android:layout_height="55dp"
+                                    android:background="@drawable/rounded_16"
+                                    android:backgroundTint="#D0EDFB">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:src="@drawable/ic_date"
+                                        app:tint="#2DC0FF" />
+                                </FrameLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="9dp"
+                                    android:fontFamily="@font/helvetica_medium"
+                                    android:letterSpacing="0.05"
+                                    android:text="Directory"
+                                    android:textColor="@color/black2"
+                                    android:textSize="16sp" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="4dp"
+                                        android:fontFamily="@font/helvetica_bold"
+                                        android:letterSpacing="0.05"
+                                        android:text="History"
+                                        android:textColor="#B7B7C1"
+                                        android:textSize="10sp" />
+
+                                    <TextView
+                                        android:id="@+id/text_historyHome"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="3dp"
+                                        android:layout_marginTop="4dp"
+                                        android:fontFamily="@font/helvetica_bold"
+                                        android:letterSpacing="0.05"
+                                        android:text="26"
+                                        android:textColor="#B7B7C1"
+                                        android:textSize="10sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/textNews"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/gridLayout2"
+                        android:layout_marginTop="24dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/helvetica_medium"
+                            android:letterSpacing="0.05"
+                            android:text="Explore More"
+                            android:textColor="@color/black2"
+                            android:textSize="18sp" />
+
+                        <ImageView
+                            android:id="@+id/btn_moreNews"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"/>
+<!--                            android:src="@drawable/ic_right" -->
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textNews"
+                        android:layout_marginTop="15dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerNews"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </RelativeLayout>

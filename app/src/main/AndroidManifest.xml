@@ -20,6 +20,12 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".ui.points.PointsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.notification.NotifActivity"
+            android:exported="false" />
+        <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
@@ -41,11 +47,12 @@
             android:name=".ui.scan.ScanActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.news.NewsDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/title_activity_main">
-
-        </activity>
+            android:label="@string/title_activity_main" />
     </application>
 
 </manifest>

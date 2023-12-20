@@ -6,10 +6,13 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.daurinpoin.app.MainActivity
 import com.daurinpoin.app.R
+import com.daurinpoin.app.service.ApiClient
+import com.daurinpoin.app.ui.login.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.UserProfileChangeRequest
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -33,49 +36,42 @@ class RegisterActivity : AppCompatActivity() {
             val password = passwordEditText.text.toString()
             val reenterPassword = reenterPasswordEditText.text.toString()
 
-            if (name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && reenterPassword.isNotEmpty()) {
-                if (password == reenterPassword) {
-                    registerUser(name, email, password)
-                } else {
-                    Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
+            if (password != reenterPassword) {
+                Toast.makeText(applicationContext, "Password tidak cocok", Toast.LENGTH_SHORT)
+                    .show()
+                return@setOnClickListener
+            }
+
+            GlobalScope.launch(Dispatchers.Main) {
+                try {
+                    val registerResponse = ApiClient.apiService.register(name, email, password)
+                    // Handle respon registrasi yang berhasil di sini
+                    if (registerResponse.status == "success") {
+                        Toast.makeText(
+                            applicationContext,
+                            "Registrasi berhasil",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        navigateToLogin()
+                    } else {
+                        // Handle respon registrasi yang tidak berhasil
+                        Toast.makeText(
+                            applicationContext,
+                            "Registrasi gagal: ${registerResponse.message}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                } catch (e: Exception) {
+                    // Handle kegagalan koneksi atau request
+                    Toast.makeText(applicationContext, "Terjadi kesalahan", Toast.LENGTH_SHORT)
+                        .show()
                 }
-            } else {
-                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun registerUser(name: String, email: String, password: String) {
-        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    val user = auth.currentUser
-
-                    val profileUpdates = UserProfileChangeRequest.Builder()
-                        .setDisplayName(name)
-                        .build()
-
-                    user?.updateProfile(profileUpdates)
-                        ?.addOnCompleteListener { profileTask ->
-                            if (profileTask.isSuccessful) {
-                                navigateToHome()
-                            } else {
-                                Toast.makeText(
-                                    this,
-                                    "Failed to update display name. ${profileTask.exception?.message}",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                        }
-                } else {
-                    Toast.makeText(
-                        this, "Registration failed. ${task.exception?.message}", Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-    }
-
-    private fun navigateToHome() {
-        val intent = Intent(this, MainActivity::class.java)
+    private fun navigateToLogin() {
+        val intent = Intent(this, LoginActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(intent)
         finish()

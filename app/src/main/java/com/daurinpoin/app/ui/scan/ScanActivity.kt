@@ -92,7 +92,7 @@ class ScanActivity : AppCompatActivity() {
 
         // Process the classification results
         val resultText = buildString {
-            for (i in 0 until minOf(2, sortedProbability.size)) {
+            for (i in 0 until minOf(1, sortedProbability.size)) {
                 val category = sortedProbability[i]
                 append("${category.label}: ${category.score}\n")
             }
