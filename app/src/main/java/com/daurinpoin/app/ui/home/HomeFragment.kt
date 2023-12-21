@@ -15,8 +15,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.daurinpoin.app.R
 import com.daurinpoin.app.service.ApiClient
+import com.daurinpoin.app.ui.directory.DirectoryActivity
 import com.daurinpoin.app.ui.news.NewsAdapter
 import com.daurinpoin.app.ui.notification.NotifActivity
+import com.daurinpoin.app.ui.rewards.RewardsActivity
 import com.daurinpoin.app.ui.scan.ScanActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -27,6 +29,8 @@ import java.util.Locale
 class HomeFragment : Fragment() {
 
     private lateinit var btnScan: FrameLayout
+    private lateinit var btnShop: FrameLayout
+    private lateinit var btnDirectory: FrameLayout
     private lateinit var btnNotif: ImageView
     private lateinit var textName: TextView
     private lateinit var textPoints: TextView
@@ -42,17 +46,27 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         textName = view.findViewById(R.id.textNamaHome)
         textPoints = view.findViewById(R.id.textShowPoin)
 
         btnScan = view.findViewById(R.id.btn_ScanTrash)
+        btnShop = view.findViewById(R.id.btn_shopRewards)
+        btnDirectory = view.findViewById(R.id.btn_directoryHome)
         btnNotif = view.findViewById(R.id.btnNotifikasi)
+
 
         loadUser()
 
         btnScan.setOnClickListener {
             val intent = Intent(requireContext(), ScanActivity::class.java)
+            startActivity(intent)
+        }
+        btnShop.setOnClickListener {
+            val intent = Intent(requireContext(), RewardsActivity::class.java)
+            startActivity(intent)
+        }
+        btnDirectory.setOnClickListener {
+            val intent = Intent(requireContext(), DirectoryActivity::class.java)
             startActivity(intent)
         }
         btnNotif.setOnClickListener {
@@ -79,13 +93,15 @@ class HomeFragment : Fragment() {
             }
         }
     }
+
     fun formatNumberWithDots(number: Long): String {
         val numberFormat = NumberFormat.getNumberInstance(Locale.getDefault())
         val symbols = (numberFormat as java.text.DecimalFormat).decimalFormatSymbols
         symbols.groupingSeparator = '.'
-        (numberFormat as java.text.DecimalFormat).decimalFormatSymbols = symbols
+        numberFormat.decimalFormatSymbols = symbols
         return numberFormat.format(number)
     }
+
     private fun loadUser() {
         val sharedPreferences =
             requireContext().getSharedPreferences("user_data", Context.MODE_PRIVATE)

@@ -4,18 +4,19 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.widget.FrameLayout
+import android.os.Handler
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.daurinpoin.app.databinding.ActivityMainBinding
-import com.daurinpoin.app.ui.scan.ScanActivity
 import me.ibrahimsn.lib.SmoothBottomBar
 
 class MainActivity : AppCompatActivity() {
 
+    private var doubleBackToExitPressedOnce = false
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
     private lateinit var bottomBar: SmoothBottomBar

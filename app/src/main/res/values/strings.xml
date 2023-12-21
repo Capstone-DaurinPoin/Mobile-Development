@@ -23,5 +23,6 @@
     <string name="text_confirmpassword">Confirm Password</string>
     <string name="text_reenter_password">Re-enter your password</string>
     <string name="text_fullname">Name</string>
-    <string name="notif_subtext">You have no notifications right now.\nCome back later.</string>
+    <string name="notif_subtext">You have no notifications right now!\nCome back later</string>
+    <string name="history_subtext">You have no Claimed Rewards right now</string>
 </resources>

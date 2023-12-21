@@ -1,4 +1,4 @@
-package com.daurinpoin.app.ui.directory
+package com.daurinpoin.app.ui.history
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,7 +10,7 @@ import com.daurinpoin.app.R
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class DirectoryFragment : Fragment() {
+class HistoryFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -28,7 +28,7 @@ class DirectoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_directory, container, false)
+        return inflater.inflate(R.layout.fragment_history, container, false)
     }
 
     companion object {
@@ -43,7 +43,7 @@ class DirectoryFragment : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            DirectoryFragment().apply {
+            HistoryFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

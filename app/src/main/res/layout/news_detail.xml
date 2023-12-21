@@ -40,9 +40,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/cardNewsDetail"
-                android:layout_margin="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
                 android:fontFamily="@font/helvetica_medium"
                 android:gravity="center"
+                android:lineSpacingExtra="6dp"
                 android:text="News Title"
                 android:textSize="20sp" />
 
@@ -69,9 +73,9 @@
         android:layout_below="@+id/textPublishedAt"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/helvetica_regular"
+        android:justificationMode="inter_word"
         android:lineSpacingExtra="6dp"
         android:text="News Content"
-        android:justificationMode="inter_word"
         android:textSize="16sp" />
 
 </RelativeLayout>

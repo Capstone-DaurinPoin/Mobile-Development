@@ -4,8 +4,10 @@ import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -13,6 +15,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.daurinpoin.app.R
 import com.daurinpoin.app.ml.ModelLawasV1
+import com.daurinpoin.app.ui.directory.DirectoryActivity
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.label.Category
 import java.io.IOException
@@ -24,11 +27,14 @@ import java.util.Locale
 class ScanActivity : AppCompatActivity() {
 
     private lateinit var model: ModelLawasV1
+    private var currentImageUri: Uri? = null
 
     private val galleryLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 result.data?.data?.let { uri ->
+                    currentImageUri = uri
+                    Log.d("ScanActivity", "Selected image URI: $uri")
                     try {
                         val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, uri)
                         classifyImageAndDisplay(bitmap)
@@ -53,6 +59,7 @@ class ScanActivity : AppCompatActivity() {
 
     private lateinit var imageView: ImageView
     private lateinit var tvClassificationResult: TextView
+    private lateinit var extraLabel: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +69,7 @@ class ScanActivity : AppCompatActivity() {
         val btnOpenCamera: Button = findViewById(R.id.btnOpenCamera)
         imageView = findViewById(R.id.imageView)
         tvClassificationResult = findViewById(R.id.tvClassificationResult)
+        extraLabel = findViewById(R.id.tempLabel)
 
         // Initialize the model
         model = ModelLawasV1.newInstance(this)
@@ -98,6 +106,11 @@ class ScanActivity : AppCompatActivity() {
             }
         }
 
+        val maxCategory = probability.maxByOrNull { it.score }
+
+        val label = maxCategory?.label ?: "Unknown"
+        extraLabel.text = label
+
         // Show the classification results
         tvClassificationResult.text = resultText
         tvClassificationResult.visibility = TextView.VISIBLE
@@ -123,6 +136,7 @@ class ScanActivity : AppCompatActivity() {
         val uri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
 
         uri?.let {
+            currentImageUri = uri
             try {
                 val outputStream: OutputStream? = resolver.openOutputStream(uri)
                 outputStream?.use { bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it) }
@@ -133,8 +147,28 @@ class ScanActivity : AppCompatActivity() {
     }
 
     private fun getTimestamp(): String {
-        val sdf = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault())
+        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
         return sdf.format(Date())
+    }
+
+    override fun onBackPressed() {
+        // Get the image path and label
+        val imagePath = saveImageAndReturnPath()
+        val label = extraLabel.text
+        val timestamp = getTimestamp()
+
+        // Pass the image and label information to DirectoryActivity
+        val intent = Intent(this, DirectoryActivity::class.java)
+        intent.putExtra("imagePath", imagePath)
+        intent.putExtra("label", label)
+        intent.putExtra("timestamp", timestamp)
+        startActivity(intent)
+
+        super.onBackPressed()
+    }
+
+    private fun saveImageAndReturnPath(): String {
+        return currentImageUri?.path ?: ""
     }
 
     override fun onDestroy() {

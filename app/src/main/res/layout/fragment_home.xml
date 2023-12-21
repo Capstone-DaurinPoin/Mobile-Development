@@ -185,7 +185,7 @@
                                         android:layout_marginTop="4dp"
                                         android:fontFamily="@font/helvetica_bold"
                                         android:letterSpacing="0.05"
-                                        android:text="Scanned"
+                                        android:text="Scaning your Trash!"
                                         android:textColor="#B7B7C1"
                                         android:textSize="10sp" />
 
@@ -198,6 +198,7 @@
                                         android:fontFamily="@font/helvetica_bold"
                                         android:letterSpacing="0.05"
                                         android:text="484"
+                                        android:visibility="gone"
                                         android:textColor="#B7B7C1"
                                         android:textSize="10sp" />
                                 </LinearLayout>
@@ -223,7 +224,7 @@
                                 android:orientation="vertical">
 
                                 <FrameLayout
-                                    android:id="@+id/btn_shop"
+                                    android:id="@+id/btn_shopRewards"
                                     android:layout_width="55dp"
                                     android:layout_height="55dp"
                                     android:background="@drawable/rounded_16"
@@ -327,7 +328,7 @@
                                         android:layout_marginTop="4dp"
                                         android:fontFamily="@font/helvetica_bold"
                                         android:letterSpacing="0.05"
-                                        android:text="Checkout"
+                                        android:text="Check your rewards!"
                                         android:textColor="#B7B7C1"
                                         android:textSize="10sp" />
 
@@ -339,6 +340,7 @@
                                         android:layout_marginTop="4dp"
                                         android:fontFamily="@font/helvetica_bold"
                                         android:letterSpacing="0.05"
+                                        android:visibility="gone"
                                         android:text="45"
                                         android:textColor="#B7B7C1"
                                         android:textSize="10sp" />
@@ -364,7 +366,7 @@
                                 android:orientation="vertical">
 
                                 <FrameLayout
-                                    android:id="@+id/btn_historyHome"
+                                    android:id="@+id/btn_directoryHome"
                                     android:layout_width="55dp"
                                     android:layout_height="55dp"
                                     android:background="@drawable/rounded_16"
@@ -400,7 +402,7 @@
                                         android:layout_marginTop="4dp"
                                         android:fontFamily="@font/helvetica_bold"
                                         android:letterSpacing="0.05"
-                                        android:text="History"
+                                        android:text="History your scanned!"
                                         android:textColor="#B7B7C1"
                                         android:textSize="10sp" />
 
@@ -412,6 +414,7 @@
                                         android:layout_marginTop="4dp"
                                         android:fontFamily="@font/helvetica_bold"
                                         android:letterSpacing="0.05"
+                                        android:visibility="gone"
                                         android:text="26"
                                         android:textColor="#B7B7C1"
                                         android:textSize="10sp" />

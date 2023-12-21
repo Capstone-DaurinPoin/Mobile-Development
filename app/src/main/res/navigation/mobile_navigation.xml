@@ -16,9 +16,9 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_history"
-        android:name="com.daurinpoin.app.ui.directory.DirectoryFragment"
+        android:name="com.daurinpoin.app.ui.history.HistoryFragment"
         android:label="@string/past"
-        tools:layout="@layout/fragment_directory" >
+        tools:layout="@layout/fragment_history" >
         <action
             android:id="@+id/action_navigation_history_to_navigation_shop"
             app:destination="@id/navigation_shop" />

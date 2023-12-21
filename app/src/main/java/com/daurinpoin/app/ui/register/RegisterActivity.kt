@@ -9,20 +9,15 @@ import androidx.appcompat.app.AppCompatActivity
 import com.daurinpoin.app.R
 import com.daurinpoin.app.service.ApiClient
 import com.daurinpoin.app.ui.login.LoginActivity
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class RegisterActivity : AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-
-        auth = FirebaseAuth.getInstance()
 
         val nameEditText: EditText = findViewById(R.id.fullname)
         val emailEditText: EditText = findViewById(R.id.username)
@@ -48,9 +43,7 @@ class RegisterActivity : AppCompatActivity() {
                     // Handle respon registrasi yang berhasil di sini
                     if (registerResponse.status == "success") {
                         Toast.makeText(
-                            applicationContext,
-                            "Registrasi berhasil",
-                            Toast.LENGTH_SHORT
+                            applicationContext, "Registrasi berhasil", Toast.LENGTH_SHORT
                         ).show()
                         navigateToLogin()
                     } else {
