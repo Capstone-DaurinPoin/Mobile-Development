@@ -7,7 +7,7 @@ This repository contains the mobile application development project, DaurinPoin,
 ### Features
 
 1. **Trash Scanning:**
-   - Utilizes camera/gallery/text area for scanning and identifying various types of trash.
+   - Utilizes camera/gallery area for scanning and identifying various types of trash.
 
 2. **Point System:**
    - Users earn points for each piece of trash scanned.
