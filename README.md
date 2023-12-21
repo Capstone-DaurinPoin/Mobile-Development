@@ -18,4 +18,4 @@ This repository contains the mobile application development project, DaurinPoin,
 
 ### Contributors
 
-- A120BSY2376 - Almas Fa'iq Khairul Ikhwan
+- ``A120BSY2376`` - Almas Fa'iq Khairul Ikhwan
