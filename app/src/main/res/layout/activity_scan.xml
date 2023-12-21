@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryLight"
     android:padding="30dp">
 
     <LinearLayout
@@ -54,27 +56,96 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageView"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewScan"
         android:layout_width="match_parent"
         android:layout_height="260dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:background="@drawable/rounded_corner"
-        android:scaleType="fitCenter"
-        android:src="@drawable/no_image"
-        android:visibility="visible" />
+        android:background="@color/colorPrimaryLight"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp">
 
-    <TextView
-        android:id="@+id/tvClassificationResult"
-        android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:background="@color/colorPrimaryLight"
+            android:scaleType="centerCrop"
+            android:src="@drawable/no_image"
+            android:visibility="visible" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewScanLabel"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/imageView"
+        android:layout_below="@id/cardViewScan"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:fontFamily="@font/helvetica_regular"
-        android:lineSpacingExtra="6dp"
-        android:text=""
-        android:textSize="16sp"
-        android:visibility="gone" />
+        android:visibility="gone"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvClassificationResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/helvetica_bold"
+                android:gravity="center"
+                android:letterSpacing="0.03"
+                android:lineSpacingExtra="6dp"
+                android:text="Lorem Ipsum"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvClassificationResult"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/helvetica_bold"
+                android:gravity="center"
+                android:letterSpacing="0.03"
+                android:lineSpacingExtra="6dp"
+                android:text="Score"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/scoreRiil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvClassificationResult"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_toEndOf="@+id/score"
+                android:fontFamily="@font/helvetica_bold"
+                android:gravity="center"
+                android:letterSpacing="0.03"
+                android:lineSpacingExtra="6dp"
+                android:text="50%"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/tempLabel"

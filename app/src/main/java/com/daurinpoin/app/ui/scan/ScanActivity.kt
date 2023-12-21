@@ -13,8 +13,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import com.daurinpoin.app.R
-import com.daurinpoin.app.ml.ModelLawasV1
+import com.daurinpoin.app.ml.ModelNewV2
 import com.daurinpoin.app.ui.directory.DirectoryActivity
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.label.Category
@@ -26,7 +27,7 @@ import java.util.Locale
 
 class ScanActivity : AppCompatActivity() {
 
-    private lateinit var model: ModelLawasV1
+    private lateinit var model: ModelNewV2
     private var currentImageUri: Uri? = null
 
     private val galleryLauncher =
@@ -59,7 +60,9 @@ class ScanActivity : AppCompatActivity() {
 
     private lateinit var imageView: ImageView
     private lateinit var tvClassificationResult: TextView
+    private lateinit var skorText: TextView
     private lateinit var extraLabel: TextView
+    private lateinit var cardLabel: CardView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,10 +72,12 @@ class ScanActivity : AppCompatActivity() {
         val btnOpenCamera: Button = findViewById(R.id.btnOpenCamera)
         imageView = findViewById(R.id.imageView)
         tvClassificationResult = findViewById(R.id.tvClassificationResult)
+        skorText = findViewById(R.id.scoreRiil)
         extraLabel = findViewById(R.id.tempLabel)
+        cardLabel = findViewById(R.id.cardViewScanLabel)
 
         // Initialize the model
-        model = ModelLawasV1.newInstance(this)
+        model = ModelNewV2.newInstance(this)
 
         // Set onClickListener for the gallery button
         btnOpenGallery.setOnClickListener {
@@ -102,18 +107,25 @@ class ScanActivity : AppCompatActivity() {
         val resultText = buildString {
             for (i in 0 until minOf(1, sortedProbability.size)) {
                 val category = sortedProbability[i]
-                append("${category.label}: ${category.score}\n")
+                append("${category.label.replaceFirstChar {
+                    if (it.isLowerCase()) it.titlecase(
+                        Locale.getDefault()
+                    ) else it.toString()
+                }}\n")
             }
         }
 
         val maxCategory = probability.maxByOrNull { it.score }
+        val scorePercentage = (maxCategory?.score ?: 0f) * 100
+        val scoreText = "${scorePercentage.toInt()}%"
 
         val label = maxCategory?.label ?: "Unknown"
         extraLabel.text = label
 
         // Show the classification results
         tvClassificationResult.text = resultText
-        tvClassificationResult.visibility = TextView.VISIBLE
+        skorText.text = scoreText
+        cardLabel.visibility = CardView.VISIBLE
     }
 
     private fun openGallery() {
