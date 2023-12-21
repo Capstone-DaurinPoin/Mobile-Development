@@ -14,7 +14,8 @@ interface CartListener {
 }
 
 class RewardAdapter(
-    private var rewards: List<DataItem?>, private val cartListener: CartListener
+    private var rewards: List<DataItem?>,
+    private val cartListener: CartListener
 ) : RecyclerView.Adapter<RewardAdapter.RewardViewHolder>() {
 
     class RewardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

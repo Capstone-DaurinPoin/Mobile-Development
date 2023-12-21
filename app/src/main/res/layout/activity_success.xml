@@ -10,7 +10,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/no_trash" />
+        android:src="@drawable/ic_gift" />
 
     <TextView
         android:id="@+id/subText"
@@ -18,12 +18,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/historyImage"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/helvetica_medium"
         android:gravity="center"
         android:letterSpacing="0.04"
-        android:layout_marginTop="30dp"
         android:lineSpacingExtra="10dp"
-        android:text="@string/trash_subtext"
+        android:text="@string/history_subtext"
         android:textColor="@android:color/black"
         android:textSize="16sp"
         android:textStyle="normal" />

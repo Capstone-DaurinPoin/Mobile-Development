@@ -25,4 +25,5 @@
     <string name="text_fullname">Name</string>
     <string name="notif_subtext">You have no notifications right now!\nCome back later</string>
     <string name="history_subtext">You have no Claimed Rewards right now</string>
+    <string name="trash_subtext">You have no Trash Submitted right now</string>
 </resources>
