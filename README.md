@@ -16,6 +16,11 @@ This repository contains the mobile application development project, DaurinPoin,
 3. **News Feed:**
    - Provides updates and news related to environmental issues and trash management worldwide.
 
+### Demo DaurinPoin
+
+https://drive.google.com/file/d/1o-7XFfUI9UGiZ3X66S8O0fZDA2N8UsbI/view?usp=drive_link
+
+
 ### Contributors
 
 - ``A120BSY2376`` - Almas Fa'iq Khairul Ikhwan
