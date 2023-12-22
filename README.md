@@ -18,7 +18,7 @@ This repository contains the mobile application development project, DaurinPoin,
 
 ### Demo DaurinPoin
 
-<iframe src="https://drive.google.com/file/d/1o-7XFfUI9UGiZ3X66S8O0fZDA2N8UsbI/preview" width="640" height="480"></iframe>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
 
 
 ### Contributors
